@@ -81,5 +81,37 @@
 \section*{Thibaud Ehret \& Sammy Khalife}
 \subsubsection*{01/02/2014}
 
+\section*{1)}
+The formula for the projection on the $i^\text{th}$ eigenvector is $ \sum_{j=1}^{n} \alpha^{(i)}_j \Phi(x_j) $.
+Therefore after injecting into the expression of $\Psi$,
+\begin{eqnarray*}
+	\Psi(x) &=& \sum_{i=1}^d \langle \sum_{j=1}^{n} \alpha^{(i)}_j \Phi(x_j), \Phi(x) - m\rangle \left(\sum_{j=1}^{n} \alpha^{(i)}_j \Phi(x_j)\right)+ m\\
+	&=& \sum_{i=1}^d \left(\sum_{j=1}^{n} \alpha^{(i)}_j \langle \Phi(x_j), \Phi(x) \rangle\right) \left(\sum_{j=1}^{n}\alpha^{(i)}_j \Phi(x_j)\right) - \sum_{i=1}^d \left(\sum_{j=1}^{n} \alpha^{(i)}_j \langle \Phi(x_j), m \rangle\right)\left(\sum_{j=1}^{n}\alpha^{(i)}_j \Phi(x_j)\right)+ m\\
+	&=& \sum_{i=1}^d \left(\sum_{j=1}^{n} \alpha^{(i)}_j K(x_j,x)\right) \left(\sum_{j=1}^{n}\alpha^{(i)}_j \Phi(x_j)\right) - \sum_{i=1}^d \left(\sum_{j=1}^{n} \alpha^{(i)}_j \langle \Phi(x_j), \frac{1}{n}\sum_{u=1}^{n} \Phi(x_u) \rangle\right) \left(\sum_{j=1}^{n}\alpha^{(i)}_j \Phi(x_j)\right)\\
+	&&+ \frac{1}{n}\sum_{u=1}^{n} \Phi(x_u)\\
+	&=& \sum_{i=1}^d \left(\sum_{j=1}^{n} \alpha^{(i)}_j K(x_j,x)\right) \left(\sum_{j=1}^{n}\alpha^{(i)}_j \Phi(x_j)\right) - \sum_{i=1}^d \left(\sum_{j=1}^{n} \alpha^{(i)}_j \frac{1}{n}\sum_{u=1}^{n} K(x_j,x_u)\right) \left(\sum_{j=1}^{n}\alpha^{(i)}_j \Phi(x_j)\right)\\
+	&&+ \frac{1}{n}\sum_{u=1}^{n} \Phi(x_u)\\
+	&=& \sum_{i=1}^d \left(\sum_{j=1}^{n} \alpha^{(i)}_j K(x_j,x)\right) \left(\sum_{j=1}^{n}\alpha^{(i)}_j \Phi(x_j)\right) - \sum_{i=1}^d \left(\sum_{j=1}^{n} \alpha^{(i)}_j \frac{1}{n}\sum_{u=1}^{n} K(x_j,x_u)\right) \left(\sum_{j=1}^{n}\alpha^{(i)}_j \Phi(x_j)\right)\\
+	&&+ \frac{1}{n}\sum_{u=1}^{n} \Phi(x_u)\\
+	&=& \sum_{j=1}^n \left( \sum_{u=1}^{n} \left(\sum_{i=1}^{d}\alpha^{(i)}_u \alpha^{(i)}_j\right) K(x_u,x) - \sum_{u=1}^{n} \left(\sum_{i=1}^{d}\alpha^{(i)}_u \alpha^{(i)}_j\right) \left(\frac{1}{n} \sum_{v=1}^n K(x_u,x_v)\right) + \frac{1}{n} \right) \Phi(x_j)
+\end{eqnarray*}
+
+Therefore 
+\[\gamma_j = \sum_{u=1}^{n} \left(\sum_{i=1}^{d}\alpha^{(i)}_u \alpha^{(i)}_j\right) K(x_u,x) - \sum_{u=1}^{n} \left(\sum_{i=1}^{d}\alpha^{(i)}_u \alpha^{(i)}_j\right) \left(\frac{1}{n} \sum_{v=1}^n K(x_u,x_v)\right) + \frac{1}{n} \]
+\section*{2)}
+
+\begin{eqnarray*}
+	f(y) &=& \|\Phi(y) - \Psi(x) \|^2\\
+	&=& \langle \Phi(y) - \Psi(x), \Phi(y) - \Psi(x) \rangle \\
+	&=& \langle \Phi(y), \Phi(y) \rangle -  2 \langle \Phi(y), \Psi(x) \rangle + \langle \Psi(x), \Psi(x) \rangle\\
+	&=& K(y,y) -  2 \langle \Phi(y), \Psi(x) \rangle + \langle \Psi(x), \Psi(x) \rangle
+\end{eqnarray*}
+
+Using the the fact that $\Psi(x) = \sum_{i=1}^n \gamma_i \Phi(x_i)$,
+\begin{eqnarray*}
+	f(y) &=& K(y,y) - 2\langle \Phi(y), \sum_{i=1}^n \gamma_i \Phi(x_i \rangle + \langle \sum_{i=1}^n \gamma_i \Phi(x_i), \sum_{i=1}^n \gamma_i \Phi(x_i) \rangle \\
+	&=& K(y,y) - 2\sum_{i=1}^n \gamma_i \langle \Phi(y), \Phi(x_i) \rangle + \sum_{i=1}^n \sum_{j=1}^n \gamma_i\gamma_j\langle  \Phi(x_i),  \Phi(x_j) \rangle \\
+	&=& K(y,y) - 2\sum_{i=1}^n \gamma_i K(y,x_i) + \sum_{i=1}^n \sum_{j=1}^n \gamma_i\gamma_j K(x_i,x_j)
+\end{eqnarray*}
 
 \end{document}
