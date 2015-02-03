@@ -124,5 +124,11 @@ Using the the fact that $\Psi(x) = \sum_{i=1}^n \gamma_i \Phi(x_i)$,
 	&=& K(y,y) - 2\sum_{i=1}^n \gamma_i \langle \Phi(y), \Phi(x_i) \rangle + \sum_{i=1}^n \sum_{j=1}^n \gamma_i\gamma_j\langle  \Phi(x_i),  \Phi(x_j) \rangle \\
 	&=& K(y,y) - 2\sum_{i=1}^n \gamma_i K(y,x_i) + \sum_{i=1}^n \sum_{j=1}^n \gamma_i\gamma_j K(x_i,x_j)
 \end{eqnarray*}
+3. In the case of $K(x,x')=exp(-\frac{||x-x'||^{2}}{2\sigma^{2}})$,
+$$f(y)=\sum_{i=1}^{n}\sum_{j=1}^{n}\gamma_{i}\gamma_{j}exp(-\frac{||x_{i}-x'_{j}||^{2}}{2\sigma^{2}})-2\sum_{i=1}^{n}\gamma_{i}exp(-\frac{||y-x_{i}||^{2}}{2\sigma^{2}})$$
+$$\nabla f(y)=\frac{2}{\sigma^{2}}\sum_{i=1}^{n}(y-x_{i})\gamma_{i}exp(-\frac{||y-x_{i}||^{2}}{2\sigma^{2}})$$
+We can here use a gradient descent method to find local minimum of f. We can use the Newton step with the Hessian :
+$$H_{f}(y)=\frac{2}{\sigma^{2}} \sum_{i=1}^{n}\gamma_{i}exp(-\frac{||y-x_{i}||^{2}}{2\sigma^{2}})[\frac{Id}{n}-(y-x_{i})(y-x_{i})^{t} ]$$
 
+$$y_{k+1}=y_{k}-H_{f}^{-1}(y_{k})\nabla y_{k}$$
 \end{document}
