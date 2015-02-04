@@ -148,9 +148,39 @@ $$y_{k+1}=y_{k}-H_{f}^{-1}(y_{k})\nabla y_{k}$$
 \section*{4)} Data used : (http://statweb.stanford.edu/~tibs/ElemStatLearn/datasets/zip.info.txt)
 ~\\
 ~\\
-Normalized handwritten digits, automatically scanned from envelopes by the U.S. Postal Service. The original
+This dataset is composed of normalized handwritten digits, automatically scanned from envelopes by the U.S. Postal Service. The original
 scanned digits are binary and of different sizes and orientations; the
 images  here have been deslanted and size normalized, resulting
 in 16 x 16 grayscale images.
+
+
+%\linewidth
+\begin{figure}[H]
+	\minipage{0.4\textwidth}
+	\includegraphics[width=9cm]{result0.jpg}
+	\subcaption{}\label{fig:awesome_image1}
+	\endminipage\hfill
+	\minipage{0.4\textwidth}
+	\includegraphics[width=9cm]{result1.jpg}
+	\subcaption{}\label{fig:awesome_image2}
+	\endminipage \\
+	\minipage{0.4\textwidth}
+	\includegraphics[width=9cm]{result2.jpg}
+	\subcaption{}\label{fig:awesome_image2}
+	\endminipage \hfill
+	\minipage{0.4\textwidth}
+	\includegraphics[width=9cm]{result3.jpg}
+	\subcaption{}\label{fig:awesome_image2}
+	\endminipage
+	\caption{Results on different digits}
+\end{figure} 
+These results have been obtained with \textbf{100 training samples}, and with \textbf{d=50}. We see that the minimization process that projects the noised data over the vector spanned by the eigenvectors simplify the geometry. Increasing d does not help to achieve better denoising, since we  are closer and closer to the noised data x :
+
+\begin{figure}[H]
+	\minipage{0.4\textwidth}
+	\includegraphics[width=7cm]{plotError.jpg}
+	\subcaption{Error plot as a function of d}\label{fig:awesome_image1}
+	\endminipage\hfill
+\end{figure}
 
 \end{document}
