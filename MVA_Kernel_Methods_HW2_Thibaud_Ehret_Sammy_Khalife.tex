@@ -127,8 +127,26 @@ Using the the fact that $\Psi(x) = \sum_{i=1}^n \gamma_i \Phi(x_i)$,
 3. In the case of $K(x,x')=exp(-\frac{||x-x'||^{2}}{2\sigma^{2}})$,
 $$f(y)=\sum_{i=1}^{n}\sum_{j=1}^{n}\gamma_{i}\gamma_{j}exp(-\frac{||x_{i}-x'_{j}||^{2}}{2\sigma^{2}})-2\sum_{i=1}^{n}\gamma_{i}exp(-\frac{||y-x_{i}||^{2}}{2\sigma^{2}})$$
 $$\nabla f(y)=\frac{2}{\sigma^{2}}\sum_{i=1}^{n}(y-x_{i})\gamma_{i}exp(-\frac{||y-x_{i}||^{2}}{2\sigma^{2}})$$
-We can here use a gradient descent method to find local minimum of f. We can use the Newton step with the Hessian :
+We can here use a gradient descent method to find local minimum of f. We see that a stationary point satisfies : 
+$$y=\frac{\sum_{i=1}^{n}x_{i}\gamma_{i}exp(-\frac{||y-x_{i}||^{2})}{2\sigma^{2}})}{\sum_{i=1}^{n}\gamma_{i}exp(\frac{-||y-x_{i}||^{2})}{2\sigma^{2}})}$$
+We can apply a fixed point method :
+
+$$y_{k+1}=\frac{\sum_{i=1}^{n}x_{i}\gamma_{i}exp(-\frac{||y_{k}-x_{i}||^{2})}{2\sigma^{2}})}{\sum_{i=1}^{n}\gamma_{i}exp(\frac{-||y_{k}-x_{i}||^{2})}{2\sigma^{2}})}$$
+With initialization at different points.~\\
+~\\
+Or we can use the Newton step with the Hessian :
 $$H_{f}(y)=\frac{2}{\sigma^{2}} \sum_{i=1}^{n}\gamma_{i}exp(-\frac{||y-x_{i}||^{2}}{2\sigma^{2}})[\frac{Id}{n}-(y-x_{i})(y-x_{i})^{t} ]$$
 
 $$y_{k+1}=y_{k}-H_{f}^{-1}(y_{k})\nabla y_{k}$$
+
+~\\
+~\\
+4. Data used : (http://statweb.stanford.edu/~tibs/ElemStatLearn/datasets/zip.info.txt)
+~\\
+~\\
+Normalized handwritten digits, automatically scanned from envelopes by the U.S. Postal Service. The original
+scanned digits are binary and of different sizes and orientations; the
+images  here have been deslanted and size normalized, resulting
+in 16 x 16 grayscale images.
+
 \end{document}
