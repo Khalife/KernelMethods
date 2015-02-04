@@ -20,11 +20,11 @@ G_centered=(eye(n)-U)*G*(eye(n)-U);
 [EigenValuesOrdered,IndexEigen]= sort(diag(D),'descend');
 
 
-d_set=[1:50:1000];
-error=zeros(size(d_set,2),1);
-
-for d_=1:size(d_set,2)
-d=d_set(d_); %number of eigenvectors taken in account
+%d_set=[1:50:1000];
+%error=zeros(size(d_set,2),1);
+%for d_=1:size(d_set,2)
+%d=d_set(d_); %number of eigenvectors taken in account
+d=500;
 FirstEigenVectors = V(:,IndexEigen(1:d));
 
 % Computing gammas
@@ -61,11 +61,12 @@ end
 end
 
 
-error(d_)=norm(X_test_noised-y);
-subplot(1,2,1), imshow(reshape(X_test_noised,16,16)), title('Noised data')
-subplot(1,2,2), imshow(reshape(y,16,16)), title('Denoised')
+%error(d_)=norm(X_test_noised-y);
+subplot(2,2,1), imshow(reshape(X_test_noised,16,16)), title('Noised data')
+subplot(2,2,2), imshow(reshape(y,16,16)), title('Denoised')
+subplot(2,2,3), imshow(reshape(X_test,16,16)), title('Original data')
 d
-end
+%end
 
 %Gradient method (not implemented yet)
 
