@@ -131,14 +131,14 @@ The idea behind $\Psi(x)$ is to denoise $x$ in the feature space, by keeping onl
 In the case of $K(x,x')=exp(-\frac{||x-x'||^{2}}{2\sigma^{2}})$,
 $$f(y)=\sum_{i=1}^{n}\sum_{j=1}^{n}\gamma_{i}\gamma_{j}exp(-\frac{||x_{i}-x'_{j}||^{2}}{2\sigma^{2}})-2\sum_{i=1}^{n}\gamma_{i}exp(-\frac{||y-x_{i}||^{2}}{2\sigma^{2}})$$
 $$\nabla f(y)=\frac{2}{\sigma^{2}}\sum_{i=1}^{n}(y-x_{i})\gamma_{i}exp(-\frac{||y-x_{i}||^{2}}{2\sigma^{2}})$$
-We can here use a gradient descent method to find local minimum of f. We see that a stationary point satisfies : 
+We see that a stationary point satisfies : 
 $$y=\frac{\sum_{i=1}^{n}x_{i}\gamma_{i}exp(-\frac{||y-x_{i}||^{2})}{2\sigma^{2}})}{\sum_{i=1}^{n}\gamma_{i}exp(\frac{-||y-x_{i}||^{2})}{2\sigma^{2}})}$$
 We can apply a fixed point method :
 
 $$y_{k+1}=\frac{\sum_{i=1}^{n}x_{i}\gamma_{i}exp(-\frac{||y_{k}-x_{i}||^{2})}{2\sigma^{2}})}{\sum_{i=1}^{n}\gamma_{i}exp(\frac{-||y_{k}-x_{i}||^{2})}{2\sigma^{2}})}$$
 With initialization at different points.~\\
 ~\\
-Or we can use the Newton step with the Hessian :
+Or we can use a gradient descent method with a Newton step with the Hessian :
 $$H_{f}(y)=\frac{2}{\sigma^{2}} \sum_{i=1}^{n}\gamma_{i}exp(-\frac{||y-x_{i}||^{2}}{2\sigma^{2}})[\frac{Id}{n}-(y-x_{i})(y-x_{i})^{t} ]$$
 
 $$y_{k+1}=y_{k}-H_{f}^{-1}(y_{k})\nabla y_{k}$$
@@ -194,7 +194,7 @@ We represent in figures a, b,c and d the projection on the first 2 dimensions fo
 	\caption{Results on different digits}
 \end{figure} 
 ~\\
-These results have been obtained with \textbf{100 training samples}, and with \textbf{d=50}. We see that the minimization process that projects the noised data over the vector spanned by the eigenvectors simplify the geometry. Increasing d does not help to achieve better denoising, since we are closer and closer to the initial noised data x. What is surprising in our results is that the error plot is globally increasing with respect to the number of points, with a minimum in $d=1$.
+These results have been obtained with a Gaussian Kernel, with \textbf{100 training samples}, and with \textbf{d=50}. We see that the minimization process that projects the noised data over the vector spanned by the eigenvectors simplify the geometry. Increasing d does not help to achieve better denoising, since we are closer and closer to the initial noised data x. In our implementation example, the error plot is globally increasing with respect to the number of points, with a minimum in $d=1$. In the general case, one should expect a trade off and a global minimum located strictly after d=1.
 
 \begin{figure}[H]
 	\minipage{0.4\textwidth}
