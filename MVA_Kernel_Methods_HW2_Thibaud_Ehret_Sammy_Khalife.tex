@@ -153,7 +153,7 @@ scanned digits are binary and of different sizes and orientations; the
 images  here have been deslanted and size normalized, resulting
 in 16 x 16 grayscale images.
 
-We represent in figures \ref{fig:linker}, \ref{fig:polker},\ref{fig:gaussker} and \ref{fig:gaussker2} the projection on the first 2 dimensions for the linear kernel, the polynomial kernel (with $p=2$) and the gaussian kernel with parameter $\sigma = 0.5$ and $\sigma = 1$ respectively.
+We represent in figures a, b,c and d the projection on the first 2 dimensions for the linear kernel, the polynomial kernel (with $p=2$) and the gaussian kernel with parameter $\sigma = 0.5$ and $\sigma = 1$ respectively.
 \begin{figure}[H]
 	\minipage{0.4\textwidth}
 	\includegraphics[width=9cm]{linKernel.png}
@@ -193,12 +193,13 @@ We represent in figures \ref{fig:linker}, \ref{fig:polker},\ref{fig:gaussker} an
 	\endminipage
 	\caption{Results on different digits}
 \end{figure} 
-These results have been obtained with \textbf{100 training samples}, and with \textbf{d=50}. We see that the minimization process that projects the noised data over the vector spanned by the eigenvectors simplify the geometry. Increasing d does not help to achieve better denoising, since we  are closer and closer to the noised data x :
+~\\
+These results have been obtained with \textbf{100 training samples}, and with \textbf{d=50}. We see that the minimization process that projects the noised data over the vector spanned by the eigenvectors simplify the geometry. Increasing d does not help to achieve better denoising, since we are closer and closer to the initial noised data x. What is surprising in our results is that the error plot is globally increasing with respect to the number of points, with a minimum in $d=1$.
 
 \begin{figure}[H]
 	\minipage{0.4\textwidth}
 	\includegraphics[width=7cm]{plotError.jpg}
-	\subcaption{Error plot as a function of d}\label{fig:awesome_image5}
+	\subcaption{Error plot as a function of (d-1)}\label{fig:awesome_image5}
 	\endminipage\hfill
 \end{figure}
 
