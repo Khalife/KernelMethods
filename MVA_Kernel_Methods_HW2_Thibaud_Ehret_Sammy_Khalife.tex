@@ -124,7 +124,11 @@ Using the the fact that $\Psi(x) = \sum_{i=1}^n \gamma_i \Phi(x_i)$,
 	&=& K(y,y) - 2\sum_{i=1}^n \gamma_i \langle \Phi(y), \Phi(x_i) \rangle + \sum_{i=1}^n \sum_{j=1}^n \gamma_i\gamma_j\langle  \Phi(x_i),  \Phi(x_j) \rangle \\
 	&=& K(y,y) - 2\sum_{i=1}^n \gamma_i K(y,x_i) + \sum_{i=1}^n \sum_{j=1}^n \gamma_i\gamma_j K(x_i,x_j)
 \end{eqnarray*}
-3. In the case of $K(x,x')=exp(-\frac{||x-x'||^{2}}{2\sigma^{2}})$,
+
+The idea behind $\Psi(x)$ is to denoise $x$ in the feature space, by keeping only the participation over the $d$ first principal components we can hope to have consider the signal without its noise. Therefore ooptimizing $f(y)$ corresponds to finding the best $y$ in the original space such that it is as close as possible to the ``denoised`` version in the feature space, therefore the $y$ that optimizes $f$ for a given $x$ correspond to the best denoised version in the original space.
+
+\section*{3)}
+In the case of $K(x,x')=exp(-\frac{||x-x'||^{2}}{2\sigma^{2}})$,
 $$f(y)=\sum_{i=1}^{n}\sum_{j=1}^{n}\gamma_{i}\gamma_{j}exp(-\frac{||x_{i}-x'_{j}||^{2}}{2\sigma^{2}})-2\sum_{i=1}^{n}\gamma_{i}exp(-\frac{||y-x_{i}||^{2}}{2\sigma^{2}})$$
 $$\nabla f(y)=\frac{2}{\sigma^{2}}\sum_{i=1}^{n}(y-x_{i})\gamma_{i}exp(-\frac{||y-x_{i}||^{2}}{2\sigma^{2}})$$
 We can here use a gradient descent method to find local minimum of f. We see that a stationary point satisfies : 
@@ -141,7 +145,7 @@ $$y_{k+1}=y_{k}-H_{f}^{-1}(y_{k})\nabla y_{k}$$
 
 ~\\
 ~\\
-4. Data used : (http://statweb.stanford.edu/~tibs/ElemStatLearn/datasets/zip.info.txt)
+\section*{4)} Data used : (http://statweb.stanford.edu/~tibs/ElemStatLearn/datasets/zip.info.txt)
 ~\\
 ~\\
 Normalized handwritten digits, automatically scanned from envelopes by the U.S. Postal Service. The original
