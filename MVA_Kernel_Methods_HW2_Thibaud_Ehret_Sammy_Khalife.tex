@@ -106,7 +106,7 @@ Therefore after injecting into the expression of $\Psi$,
 \end{eqnarray*}
 
 Therefore 
-\[\gamma_j = \sum_{u=1}^{n} \left(\sum_{i=1}^{d}\beta^{(i)}_u \beta^{(i)}_j\right) K(x_u,x) - \sum_{u=1}^{n} \left(\sum_{i=1}^{d}\beta^{(i)}_u \beta^{(i)}_j\right) \left(\frac{1}{n} \sum_{v=1}^n K(x_u,x_v)\right) + \frac{1}{n} \]
+\[\gamma_j = \sum_{u=1}^{n} \left(\sum_{i=1}^{d}\beta^{(i)}_u \beta^{(i)}_j\right) \left(K(x_u,x) - \left(\frac{1}{n} \sum_{v=1}^n K(x_u,x_v)\right)\right) + \frac{1}{n} \]
 
 
 \section*{2)}
@@ -153,7 +153,26 @@ scanned digits are binary and of different sizes and orientations; the
 images  here have been deslanted and size normalized, resulting
 in 16 x 16 grayscale images.
 
-
+We represent in figures \ref{fig:linker}, \ref{fig:polker},\ref{fig:gaussker} and \ref{fig:gaussker2} the projection on the first 2 dimensions for the linear kernel, the polynomial kernel (with $p=2$) and the gaussian kernel with parameter $\sigma = 0.5$ and $\sigma = 1$ respectively.
+\begin{figure}[H]
+	\minipage{0.4\textwidth}
+	\includegraphics[width=9cm]{linKernel.png}
+	\subcaption{Linear kernel}\label{fig:linker}
+	\endminipage\hfill
+	\minipage{0.4\textwidth}
+	\includegraphics[width=9cm]{polyKernel.png}
+	\subcaption{Polynomial kernel}\label{fig:polker}
+	\endminipage \\
+	\minipage{0.4\textwidth}
+	\includegraphics[width=9cm]{gaussianKernel.png}
+	\subcaption{Gaussian kernel with $\sigma = 0.5$}\label{fig:gaussker}
+	\endminipage \hfill
+	\minipage{0.4\textwidth}
+	\includegraphics[width=9cm]{gaussianKernel2.png}
+	\subcaption{Gaussian kernel with $\sigma = 1$}\label{fig:gaussker2}
+	\endminipage \hfill
+	\caption{Visualization for different kernels, the class of $0$ is in blue, the class of $1$ is in red, the class of $2$ is in green and the class of $3$ is in black}
+\end{figure} 
 %\linewidth
 \begin{figure}[H]
 	\minipage{0.4\textwidth}
@@ -166,11 +185,11 @@ in 16 x 16 grayscale images.
 	\endminipage \\
 	\minipage{0.4\textwidth}
 	\includegraphics[width=9cm]{result2.jpg}
-	\subcaption{}\label{fig:awesome_image2}
+	\subcaption{}\label{fig:awesome_image3}
 	\endminipage \hfill
 	\minipage{0.4\textwidth}
 	\includegraphics[width=9cm]{result3.jpg}
-	\subcaption{}\label{fig:awesome_image2}
+	\subcaption{}\label{fig:awesome_image4}
 	\endminipage
 	\caption{Results on different digits}
 \end{figure} 
@@ -179,7 +198,7 @@ These results have been obtained with \textbf{100 training samples}, and with \t
 \begin{figure}[H]
 	\minipage{0.4\textwidth}
 	\includegraphics[width=7cm]{plotError.jpg}
-	\subcaption{Error plot as a function of d}\label{fig:awesome_image1}
+	\subcaption{Error plot as a function of d}\label{fig:awesome_image5}
 	\endminipage\hfill
 \end{figure}
 
