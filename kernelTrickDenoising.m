@@ -1,6 +1,6 @@
 filename='train.0';
 data=load(filename);
-n=1000;
+n=100;
 X=data([1:n],:);
 p=size(X,2);
 
@@ -24,22 +24,39 @@ G_centered=(eye(n)-U)*G*(eye(n)-U);
 %error=zeros(size(d_set,2),1);
 %for d_=1:size(d_set,2)
 %d=d_set(d_); %number of eigenvectors taken in account
-d=500;
+d=50;
 FirstEigenVectors = V(:,IndexEigen(1:d));
+
+%compute the alpha_i s
+alpha = zeros(n,d);
+
+for i=1:d
+    % normalize eigenvector
+    alpha(:,i) = FirstEigenVectors(:,i) / sqrt(EigenValuesOrdered(i));
+    alpha(:,i) = alpha(:,i) - mean(alpha(:,i));
+end
 
 % Computing gammas
 gamma=zeros(n,1);
-sigma_noise=0.3;
+sigma_noise=0.5;
 X_test=data(1001,:);
-X_test_noised=X_test+sigma_noise*randn(1,p); %add noise 
+X_test_noised=X_test+(1-2*randi(1,1))*(sigma_noise*randn(1,p)); %add noise 
 K_temp=zeros(n,1);
 
 for i=1:n
-    K_temp(i)=GaussianKernel(X_test_noised,X(i,:))-(1/n)*sum(G(i,:),2);
+    K_temp(i)=GaussianKernel(X_test_noised,X(i,:));%-(1/n)*sum(G(i,:),2);
 end
 
 for j=1:n
-    gamma(j)=1/n+sum(K_temp.*sum(FirstEigenVectors.*repmat(FirstEigenVectors(j,:),n,1),2),1);
+    gamma(j)=1/n;%+sum(K_temp.*sum(FirstEigenVectors.*repmat(FirstEigenVectors(j,:),n,1),2),1);
+    coeff = 0;
+    for u = 1:n
+        for i = 1:d
+            coeff = coeff + alpha(u,i)*alpha(j,i);
+        end
+        gamma(j) = gamma(j) + (K_temp(u) - mean(G(:,u))) * coeff;
+    end
+    
 end
 
 
@@ -62,9 +79,9 @@ end
 
 
 %error(d_)=norm(X_test_noised-y);
-subplot(2,2,1), imshow(reshape(X_test_noised,16,16)), title('Noised data')
-subplot(2,2,2), imshow(reshape(y,16,16)), title('Denoised')
-subplot(2,2,3), imshow(reshape(X_test,16,16)), title('Original data')
+subplot(2,2,1), imshow(reshape(X_test_noised,16,16),[min(X_test_noised(:)) max(X_test_noised(:))]), title('Noised data')
+subplot(2,2,2), imshow(reshape(y,16,16),[min(y(:)) max(y(:))]), title('Denoised')
+subplot(2,2,3), imshow(reshape(X_test,16,16),[min(X_test(:)) max(X_test(:))]), title('Original data')
 d
 %end
 
